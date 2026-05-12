@@ -1,0 +1,3 @@
+### レコードの削除（DELETE）
+DELETE FROM SAMPLE_3_1_1
+ WHERE ID = 2 ;

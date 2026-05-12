@@ -1,0 +1,66 @@
+Users\seina_miura>mysql -V
+mysql  Ver 8.0.45 for Win64 on x86_64 (MySQL Community Server - GPL) 
+　
+C:\Users\seina_miura>mysql -u root -p
+Enter password: ****
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+
+※rootでも普通に設定したパスワードでした
+
+
+
+▼MySQLのインストール確認
+mysql --version
+
+
+▼MySQLへのユーザーでのログイン
+<Windowsユーザー>
+mysql -u root -p
+root
+<Macユーザー>
+mysql -u root
+
+
+▼ユーザーの作成
+（管理者ユーザーでMySQLにログインした状態で）
+create user test_user@localhost identified by 'test_pass';
+
+
+▼ユーザーの確認
+（管理者ユーザーでMySQLにログインした状態で）
+select Host,User from mysql.user;
+
+
+▼データベース（スキーマ）の作成
+（管理者ユーザーでMySQLにログインした状態で）
+create database test_db default character set utf8;
+
+
+▼データベース（スキーマ）の確認
+（管理者ユーザーでMySQLにログインした状態で）
+show databases;
+
+
+▼ユーザーへのアクセス権限の付与
+（管理者ユーザーでMySQLにログインした状態で）
+grant all privileges on test_db.* to test_user@localhost;
+
+
+▼ユーザーへのアクセス権限の確認
+（管理者ユーザーでMySQLにログインした状態で）
+show grants for test_user@localhost;
+
+
+▼認証プラグインの変更
+（管理者ユーザーでMySQLにログインした状態で）
+alter user test_user@localhost identified with mysql_native_password by 'test_pass'; 
+
+
+▼認証プラグインの確認
+（管理者ユーザーでMySQLにログインした状態で）
+select User,Plugin from mysql.user;
+
+
+▼MySQLからのログアウト
+（MySQLにログインした状態で）
+quit

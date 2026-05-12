@@ -1,0 +1,24 @@
+■COUNT(*)
+抽出対象の全レコード数を取得
+■COUNT(カラム名)
+抽出対象のカラムのデータ数（NULLを除く）を取得
+
+### レコード数の集計（ COUNT関数 ）
+SELECT COUNT(*) , COUNT(PET_ID)
+  FROM SAMPLE_4_2 ;
+
+### 数値の集計（SUM関数／AVG関数／MAX関数／MIN関数） 
+SELECT SUM(WEIGHT) ,
+       AVG(WEIGHT) ,
+       MAX(WEIGHT) ,
+       MIN(WEIGHT)
+  FROM SAMPLE_4_1 ;
+
+### 重複を除いたデータの抽出（DISTINCT） 
+SELECT DISTINCT GENDER
+  FROM SAMPLE_4_1 ;
+
+### 重複を除いたレコード数の集計（ DISTINCT×COUNT ） 
+SELECT COUNT( DISTINCT GENDER )
+  FROM SAMPLE_4_1 ;
+

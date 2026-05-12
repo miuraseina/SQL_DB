@@ -1,0 +1,71 @@
+～テーブルの検索（SELECT）～
+≪ WHERE句の構造 ≫
+SELECT ID , NAME ,GENDER , BIRTHDAY , WEIGHT
+FROM SAMPLE_4_1
+WHERE GENDER = 'M’
+AND WEIGHT > 6.2
+FROM句：どのテーブルから
+WHERE句：どの行の
+SELECT句：どのカラムのデータを抽出するか
+
+### WHERE句の構造 
+SELECT *
+  FROM SAMPLE_4_1
+ WHERE GENDER = 'M'
+   AND WEIGHT > 6.2 ;
+### WHERE句で扱える演算子（ IN ） 
+SELECT *
+  FROM SAMPLE_4_1
+ WHERE NAME IN ('MOCO','TARO','RINRIN') ;
+### WHERE句で扱える演算子（ NOT ） 
+SELECT *
+  FROM SAMPLE_4_1
+ WHERE NAME NOT IN ('MOCO','TARO','RINRIN') ;
+### WHERE句で扱える演算子（ LIKE ） 
+SELECT *
+  FROM SAMPLE_4_1
+ WHERE BIRTHDAY LIKE '2013%' ;
+### WHERE句で扱える演算子（ BETWEEN ） 
+SELECT *
+  FROM SAMPLE_4_1
+ WHERE WEIGHT BETWEEN 5.0 AND 8.0 ;
+
+
+▼WHERE句で扱える様々な演算子
+=       
+左辺と右辺が等しければ真
+!=
+<>   
+辺と右辺が等しくなければ真
+>
+左辺が右辺よりも大きければ真
+>=
+左辺が右辺以上であれば真
+V
+左辺が右辺よりも小さければ真
+左辺が右辺以下であれば真
+<=
+AND
+2つの条件を結合し、両方とも真であれば真
+OR
+2つの条件を結合し、どちらか一方でも真であれば真
+NOT
+結果を反転(真であれば偽、偽であれば真)
+BETWEEN 値a AND 値b
+値a以上、値b以下の範囲内であれば真
+IN
+対象のフィールドが()内の値のいずれかと一致すれば真
+LIKE
+対象のフィールドがパターンに一致すれば真
+
+論理演算子の優先順
+NOT＞AND＞OR
+
+SELECT ID , NAME ,GENDER , BIRTHDAY , WEIGHT
+FROM SAMPLE_4_1
+WHERE GENDER = 'F' AND  NOT WEIGHT > 6 OR NOT GENDER = 'F' AND BIRTHDAY > '20120101'
+=
+SELECT ID , NAME ,GENDER , BIRTHDAY , WEIGHT
+FROM SAMPLE_4_1
+WHERE ( GENDER = 'F' AND ( NOT WEIGHT > 6 ) ) OR ( ( NOT GENDER =‘F’) AND BIRTHDAY > '20120101’)
+
