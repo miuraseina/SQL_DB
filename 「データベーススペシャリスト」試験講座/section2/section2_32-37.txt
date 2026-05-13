@@ -1,0 +1,123 @@
+SELECT項⽬名,項⽬名,項⽬名・・・
+FROM テーブル名
+WHERE副問合せ
+SQLを実⾏した結果を使ってSQL⽂を
+実⾏します
+複雑ですが、どのような仕組みで動作
+しているかを理解する必要があります
+
+副問合せをした結果を使って外側のSQLを実⾏する
+//イコールの場合、内側（副問合せ）の結果が１⾏である必要がある
+SELECT 商品名
+FROM 商品
+WHERE 商品コード= (
+SELECT 商品コード
+FROM 売上明細
+WHERE 売上番号= 1 AND 明細番号= 1)
+
+副問合せをした結果を使って外側のSQLを実⾏する
+//INの場合、内側（副問合せ）の結果が複数⾏であってもよい
+SELECT 商品名
+FROM 商品
+WHERE 商品コードIN (
+SELECT 商品コード
+FROM 売上明細
+WHERE 売上番号= 1)
+
+内側（副問合せ）の結果が複数⾏であってもよい
+
+副問合せをした結果のすべてよりも⼤きい⾏を取得する
+SELECT 商品コード
+FROM売上明細
+WHERE 数量> ALL (
+SELECT 数量
+FROM 売上明細
+WHERE 売上番号= 3
+)
+
+副問合せをした結果のどれかよりも⼤きい⾏を取得する
+//SOME,ANY＝SUM　すべて同意味
+SELECT 商品コード
+FROM売上明細
+WHERE 数量> SOME (
+SELECT 数量
+FROM 売上明細
+WHERE 売上番号= 3
+)
+
+33
+副問合せをした結果が１件でもあれば、外側を実⾏
+SELECT 商品名
+FROM 商品
+WHERE EXISTS (
+SELECT * 
+FROM 売上明細
+)
+
+相関副問合せ
+SELECT項⽬名,項⽬名,項⽬名・・・
+FROM テーブル名
+WHERE相関副問合せ
+副問合せとは異なり、１⾏１⾏を処理
+していきます
+処理速度は落ちます
+
+外側のテーブルから値を内側に渡して実⾏し、
+結果が存在していればその⾏を表⽰
+SELECT 商品名
+FROM 商品
+WHERE EXISTS (
+SELECT * 
+FROM 売上明細
+WHERE 商品コード= 商品.商品コード
+)
+ただの副問合せとの違いに注意
+
+内側のSQL⽂で、外側のテーブルを参照していたとしたら、相関副問合せ（１⾏ずつ処理）
+SELECT 商品名FROM 商品
+WHERE EXISTS (
+SELECT * 
+FROM 売上明細
+WHERE 商品コード= 商品.商品コード
+)
+
+内側のSQL⽂で、外側のSQL⽂を参照していないとしたら、普通の副問合せ（内側から処理）
+SELECT 商品名FROM 商品
+WHERE EXISTS (
+SELECT * 
+FROM 売上明細
+)
+
+その他の相関副問合せのパターン
+SELECT 商品名FROM 商品
+WHERE 商品コードIN(
+SELECT 商品コード
+FROM 売上明細
+WHERE 商品コード= 商品.商品コード
+)
+
+SELECT 商品名FROM 商品
+WHERE 商品コード> ALL(
+SELECT 商品コード
+FROM 売上明細
+WHERE 商品コード= 商品.商品コード
+)
+
+以下の条件で相関副問合せをのSQLを記述すること。
+
+■内側のSQL
+「member」テーブルから、
+以下に記述する外側のSQLのmemberCodeに一致するデータを取得する。
+■外側のSQL
+　対象テーブルは「sale」テーブルとする。
+　内側のSQLとは「memberCode」を使って相関副問合せを行う。
+　また選択項目は全てとする。
+SELECT *
+FROM SALE
+WHERE EXISTS(
+    SELECT *
+    FROM MEMBER
+    WHERE MEMBERCODE = SALE.MEMBERCODE
+    );
+
+34,35,36,37 問題解説

@@ -1,0 +1,48 @@
+射影
+商品名、単価、最終⼊荷⽇だけを取得する
+SELECT 商品名, 単価, 最終⼊荷⽇
+FROM 商品
+WHERE単価<= 130
+
+項⽬名に別名を指定する
+SELECT 単価AS価格, 商品名FROM 商品
+WHERE単価<= 130
+
+項⽬名に計算式を指定する
+SELECT 単価* 0.7AS割引価格, 最終⼊荷⽇
+FROM 商品
+WHERE
+商品名= ʼボールペンʼOR 商品名= ʼ鉛筆ʼ
+OR 商品名= ʼ消しゴムʼ
+
+項⽬名に定数を指定する
+SELECT ʼ130円ʼ AS 価格 FROM 商品
+WHERE単価= 130
+
+項⽬名を連結する
+SELECT 単価|| ʼ円ʼ AS⾦額FROM 商品
+
+SELECT商品コード|| ʼ:ʼ || 商品名AS
+商品FROM 商品
+MySQLでは別の意味になるが,試験では| | で連結する
+※MySQLではCONCAT(,)で連結する
+
+同じ単価が複数⾏あっても１⾏だけ表⽰する//重複を除外
+SELECT DISTINCT 単価 FROM 商品
+
+型番がNULLの場合には「なし」にする
+SELECT COALESCE(型番, ʼなしʼ) 型番
+FROM 商品
+
+単価が300以下なら「割引対象」と表⽰し、
+それ以外なら「通常価格」と表⽰する
+SELECT 
+CASE WHEN 単価<=300 THEN '割引対象' ELSE '通常価格' END
+FROM 商品
+
+型番がNULLの場合には「なし」にする
+SELECT COALESCE(型番, ʼなしʼ)型番FROM 商品
+SELECT 
+CASE WHEN 型番IS NULL THEN ʼなしʼ ELSE 型番ENDFROM 商品
+
+

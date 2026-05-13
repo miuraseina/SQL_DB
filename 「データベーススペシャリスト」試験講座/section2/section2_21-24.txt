@@ -1,0 +1,62 @@
+直積/ 和/差/積/商
+複数のテーブルを使った演算を⾏います
+直積、和がよく出題されます
+商はMySQLでは実現できません
+
+21
+和を求める（重複を排除する）
+和両⽴である
+必要がある
+SELECT 最終⼊荷⽇FROM 商品WHERE 商品種別コード= 1
+UNION
+SELECT 最終⼊荷⽇FROM 商品WHERE 商品種別コード= 2
+
+和を求める（重複を排除しない）
+SELECT 最終⼊荷⽇FROM 商品WHERE 商品種別コード= 1
+UNION ALL
+SELECT 最終⼊荷⽇FROM 商品WHERE 商品種別コード= 2
+
+差
+SELECT 商品コードFROM 商品
+EXCEPT
+SELECT 商品コードFROM 商品WHERE 商品種別コード= 
+
+「product」テーブルから「price」が200未満のレコードを選択する
+「product」テーブルから「categoryCode」が「3」のレコードを選択する
+なお選択項目は両方とも「productCode」と「name」とする。
+和の場合
+SELECT PRODUCTCODE,NAME 
+FROM PRODUCT WHERE PRICE < 200
+UNION 
+SELECT PRODUCTCODE,NAME 
+FROM PRODUCT WHERE CATEGORYCODE = 3 ;
+
+差の場合
+SELECT PRODUCTCODE,NAME 
+FROM PRODUCT WHERE PRICE < 200
+UNION 
+SELECT PRODUCTCODE,NAME 
+FROM PRODUCT WHERE CATEGORYCODE = 3 ;
+
+22
+積を求める
+SELECT 商品コードFROM 商品WHERE商品種別
+コード= 2
+INTERSECT
+SELECT 商品コードFROM 売上明細WHERE⾦額
+>= 300
+
+直積すべての組み合わせ
+商品と店舗の直積を取得する
+SELECT *FROM 商品, 店舗
+SELECT *FROM 商品CROSS JOIN 店舗
+
+member」テーブルと「sale」テーブルの直積を行う。
+なお選択項目はすべてとする。
+SELECT *
+FROM MEMBER CROSS JOIN SALE;
+
+23問題解説
+
+24
+商直積の結果から逆算して求める

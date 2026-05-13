@@ -1,0 +1,90 @@
+41
+テーブル作成
+CREATE TABLE 
+(
+項⽬名データ型, ・・・・
+)
+基本形は項⽬名とデータ型の指定だけです
+制約や初期値などを追加で指定できます
+データベーススペシャリスト 午前対策コース 【SQL】
+テーブル作成
+返品テーブルを作成する
+CREATE TABLE 返品
+(
+返品番号INTEGER,
+売上番号INTEGER,
+返品⽇付DATE,
+理由VARCHAR(100) DEFAULT NULL
+)
+「理由」項⽬のデフォルト値（初期値）はNULL
+
+返品テーブルを削除する
+DROP TABLE 返品
+
+返品テーブルを主キーや⾮NULL制約を付与して作成する
+CREATE TABLE 返品
+(
+返品番号INTEGER PRIMARY KEY,
+売上番号INTEGER NOT NULL,
+返品⽇付DATE NOT NULL,
+理由VARCHAR(100) DEFAULT NULL,
+)
+
+返品テーブルを⼀意制約も付与して作成する
+CREATE TABLE 返品
+(
+返品番号INTEGER PRIMARY KEY,
+売上番号INTEGER UNIQUENOT NULL,
+返品⽇付DATE NOT NULL,
+理由VARCHAR(100) DEFAULT NULL,
+)
+
+42
+返品テーブルを参照制約も付与して作成する
+CREATE TABLE 返品
+(
+返品番号INTEGER PRIMARY KEY,
+売上番号
+INTEGER
+UNIQUE
+NOT NULL
+REFERENCES 売上(売上番号)
+,
+返品⽇付DATE NOT NULL,
+理由VARCHAR(100) DEFAULT NULL,
+)
+
+返品テーブルを参照制約のオプションも付与して作成する
+CREATE TABLE 返品
+(
+返品番号INTEGER PRIMARY KEY,
+売上番号
+INTEGER
+UNIQUE
+NOT NULL
+REFERENCES 売上(売上番号)ON DELETE CASCADE
+,
+返品⽇付DATE NOT NULL,
+理由VARCHAR(100) DEFAULT NULL,
+)
+
+主キー付与の記述場所を変えてみる
+CREATE TABLE 返品
+(
+返品番号INTEGER,
+売上番号INTEGER NOT NULL,
+返品⽇付DATE NOT NULL,
+理由VARCHAR(100) DEFAULT NULL,
+PRIMARY KEY(返品番号)
+)
+
+参照制約付与の記述場所を変えてみる
+CREATE TABLE 返品
+(
+返品番号INTEGER PRIMARY KEY,
+売上番号INTEGER UNIQUE NOT NULL,
+返品⽇付DATE NOT NULL,
+理由VARCHAR(100) DEFAULT NULL,
+FOREIGN KEY(売上番号)
+REFERENCES 売上(売上番号)
+)

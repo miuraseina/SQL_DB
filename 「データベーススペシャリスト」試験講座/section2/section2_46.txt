@@ -1,0 +1,24 @@
+
+権限付与
+GRANT 権限, ・・・ON テーブル名
+TO ユーザ名
+どのテーブルについてのどの操作を
+誰に許可するのかを設定します
+ビューに対しても設定可能です
+
+ユーザ「ishida」には会員テーブルの選択だけ許可する
+GRANT SELECT ON 会員TO ishida
+※PUBLICにすると全員に許可
+ユーザ「ishida」から会員テーブルの選択権限を削除する
+REVOKE SELECT ON 会員FROM ishida
+
+権限付与
+ユーザ「ishida」に会員テーブルの選択と更新を許可する
+GRANT 
+SELECT, UPDATE(ポイント, 最終使⽤⽇) 
+ON 会員TO ishida
+
+すべてのユーザに会員テーブルのすべての権限を付与する
+GRANT 
+ALL PRIVILEGES
+ON 会員TO PUBLIC

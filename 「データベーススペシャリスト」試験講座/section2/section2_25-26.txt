@@ -1,0 +1,48 @@
+25
+結合
+SELECT項⽬名・・・
+FROM テーブル名１○○○JOIN テーブル名２
+ON 結合条件
+様々なタイプの結合があります
+必ず出題されますのでしっかりとした
+学習が必要です
+
+INNER JOINを使って内部結合をする
+※INNERは省略可能
+SELECT 商品名, 数量
+FROM 商品INNER JOIN売上明細
+ON商品.商品コード= 売上明細.商品コード
+
+内部結合
+USING で条件を簡潔に記述
+
+SELECT 商品名, 数量
+FROM 商品INNER JOIN売上明細
+USING(商品コード)
+
+NATURAL JOIN で条件を⾃動判定
+SELECT 商品名, 数量
+FROM 商品NATURAL JOIN売上明細
+
+１.「member」テーブルと「sale」テーブルの直積を行う。
+　　なお選択項目は以下とする。
+・member.memberCode
+・sale.memberCode
+・saleDate
+　　※共通の項目名「memberCode」があるためテーブル名の指定をする
+２.上記結果のうち以下の選択を行うことで、意味のある行だけを選択する。
+member.memberCodeとsale.memberCodeが同じ行
+
+SELECT member.memberCode
+,sale.memberCode
+,saleDate
+FROM MEMBER,SALE  
+WHERE MEMBER.MEMBERCODE = SALE.MEMBERCODE; 
+
+SELECT member.memberCode
+,sale.memberCode
+,saleDate
+FROM MEMBER JOIN SALE 
+ON MEMBER.MEMBERCODE = SALE.MEMBERCODE; 
+
+26　問題解説

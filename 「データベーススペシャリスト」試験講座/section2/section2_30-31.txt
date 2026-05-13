@@ -1,0 +1,7 @@
+全外部結合　※MySQLではできない
+OUTER JOINを使って内部結合をする
+SELECT 商品名, 数量
+FROM 商品FULL OUTER JOIN売上明細
+ON商品.商品コード= 売上明細.商品コード
+
+・NULLIFは、１つ⽬と２つ⽬が同じならNULLを返す

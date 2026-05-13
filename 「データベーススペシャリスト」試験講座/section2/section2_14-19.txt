@@ -1,0 +1,88 @@
+14
+グルーピング
+SELECT項⽬名,・・・
+FROM テーブル名
+GROUP BY項⽬名,・・・
+HAVING 条件式
+・データをクループ化します
+・選択項⽬はグループ化した項⽬と
+・集約関数が可能です
+・グループ化した後に絞り込みができます
+
+SELECT 商品種別コード
+FROM 商品
+GROUP BY 商品種別コード
+
+SELECT 商品種別コード
+FROM 商品
+GROUP BY 商品種別コード, 最終⼊荷⽇
+
+15
+グルーピング（集約関数）
+グループごとの件数を取得する
+SELECT 商品種別コード, COUNT(*)
+FROM 商品
+GROUP BY 商品種別コード
+
+グループごとの件数を取得する
+ただし型番がNULLのものはカウントしない
+SELECT 商品種別コード, COUNT(型番)
+FROM 商品
+GROUP BY 商品種別コード
+
+グループごとの件数を取得する
+ただし最終⼊荷⽇がNULLのものはカウントしない
+さらに重複を排除したカウントとする
+SELECT 商品種別コード, COUNT(DISTINCT 最終⼊荷⽇)
+FROM 商品
+GROUP BY 商品種別コード
+
+テーブル「product」を「categoryCode」でグループ化し、
+「categoryCode」とその件数を表示する。
+なお件数には「number」という別名をつける。
+SELECT CATEGORYCODE,COUNT(*) AS NUMBER
+FROM PRODUCT 
+GROUP BY CATEGORYCODE;
+16
+SELECT文は同一の列を異なる選択項目に指定できる
+NULLはカウントされない
+
+
+17
+グループ内のデータの単価のうち最⼤（または最⼩）の値を取得する
+SELECT 商品種別コード, MAX(単価)
+FROM 商品
+GROUP BY 商品種別コード
+
+グループ内のデータの売上明細の数量を合計（または平均）する
+SELECT 商品コード, SUM(数量)
+FROM 売上明細
+GROUP BY 商品コード
+※AVG(数量)で平均値
+
+
+
+18
+グルーピング後の結果に対して条件を指定する
+SELECT 商品コード, SUM(数量)
+FROM 売上明細
+GROUP BY 商品コード
+HAVING 商品コード<= 10
+※グルーピングの基準である商品コードが１０以下のものだけとする
+
+
+条件の指定には集約関数も使⽤できる
+SELECT 商品コード, SUM(数量)
+FROM 売上明細
+GROUP BY 商品コード
+HAVING SUM(数量) > 20
+
+「team」ごとの平均年齢を表示する。
+ただし「team」に所属している行の件数が
+１を超えるもののみとする。
+SELECT TEAM, AVG(AGE)
+FROM MEMBER
+GROUP BY TEAM 
+HAVING COUNT(*)> 1 ;
+
+19　問題解説

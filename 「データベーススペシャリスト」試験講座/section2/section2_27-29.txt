@@ -1,0 +1,34 @@
+27
+左外部結合
+OUTER JOINを使って内部結合をする
+SELECT 商品名, 数量
+FROM 商品LEFT OUTER JOIN売上明細
+ON商品.商品コード= 売上明細.商品コード
+条件には内部結合と同じく
+USINGも使⽤可能
+
+右外部結合
+OUTER JOINを使って内部結合をする
+SELECT 商品名, 数量
+FROM 売上明細RIGHT OUTER JOIN 商品
+ON売上明細.商品コード=商品.商品コード
+
+１.「member」テーブルと「sale」テーブルの直積を行う。
+　　なお選択項目は以下とする。
+・member.memberCode
+・sale.memberCode
+・saleDate
+　　※共通の項目名「memberCode」があるためテーブル名の指定をする
+２.上記結果のうち以下の選択を行うことで、意味のある行だけを選択する。
+member.memberCodeとsale.memberCodeが同じ行
+
+SELECT member.memberCode
+,sale.memberCode
+,saleDate
+FROM MEMBER OUTER JOIN SALE 
+ON MEMBER.MEMBERCODE = SALE.MEMBERCODE;
+
+28　問題解説
+
+29 補足
+ASは半角スペースでも使用可能
