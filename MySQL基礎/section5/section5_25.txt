@@ -1,0 +1,27 @@
+～テーブルの検索（SELECT）～
+≪ ORDER BY句の構造 ≫
+SELECT ID , NAME ,GENDER , BIRTHDAY , WEIGHT
+FROM SAMPLE_4_1
+WHERE GENDER = 'M’
+ORDER BY BIRTHDAY , WEIGHT DESC
+FROM句
+どのテーブルから
+WHERE句
+どの行の
+SELECT句
+どのカラムのデータを抽出して
+ORDER BY句
+どう並び替えて表示させるか
+「BIRTHDAY（昇順）、WEIGHT（降順）の順で並び替えて抽出」
+という意味のSELECT文になっている
+
+### ORDER BY句の構造 
+SELECT *
+  FROM SAMPLE_4_1
+ WHERE GENDER = 'M'
+ ORDER BY BIRTHDAY , WEIGHT DESC ;
+
+### NULLデータの並び替え
+SELECT *
+  FROM SAMPLE_4_2
+ ORDER BY PET_ID , HOME_ID ;

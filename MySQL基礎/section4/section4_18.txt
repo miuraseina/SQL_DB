@@ -1,0 +1,34 @@
+～テーブルの仕様変更（ALTER TABLE）～
+■カラムの追加
+＜最後尾に追加する場合（ADD）＞
+ALTER TABLE テーブル名
+ADD 追加カラム名追加カラムの型追加カラムのオプション;
+＜先頭に追加する場合（ADD-FIRST）＞
+ALTER TABLE テーブル名
+ADD 追加カラム名追加カラムの型追加カラムのオプションFIRST ;
+＜既存カラムの後に追加する場合（ADD-AFTER）＞
+ALTER TABLE テーブル名
+ADD 追加カラム名追加カラムの型追加カラムのオプションAFTER 既存カラム名;
+
+
+### テーブルの仕様変更（ALTER TABLE）
+
+#カラムの追加
+ALTER TABLE SAMPLE_3_1_1
+  ADD COLOR VARCHAR(15) NOT NULL DEFAULT 'WHITE' COMMENT '毛色' AFTER WEIGHT ;
+
+#カラム名の変更
+ALTER TABLE SAMPLE_3_1_1
+  RENAME COLUMN COLOR TO FUR_COLOR ;
+
+#カラム定義（型＋オプション）の変更
+ALTER TABLE SAMPLE_3_1_1
+  MODIFY FUR_COLOR VARCHAR(30) DEFAULT 'BROWN' ;
+
+#カラム名＋カラム定義（型＋オプション）の変更
+ALTER TABLE SAMPLE_3_1_1
+  CHANGE FUR_COLOR DOGS_FUR_COLOR VARCHAR(30) NOT NULL DEFAULT 'BROWN' COMMENT '犬の毛色' ;
+
+#カラムの削除
+ALTER TABLE SAMPLE_3_1_1
+  DROP DOGS_FUR_COLOR ;

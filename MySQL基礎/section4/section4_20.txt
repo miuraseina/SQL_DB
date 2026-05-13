@@ -1,0 +1,9 @@
+～テーブルの仕様変更（ALTER TABLE）～
+■カラムの削除
+ALTER TABLE SAMPLE_3_1_1
+テーブル名
+DROP DOGS_FUR_COLOR ;
+削除対象の対象カラム名
+
+
+DROP TABLE SAMPLE_3_1_1 ;

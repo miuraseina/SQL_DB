@@ -1,0 +1,11 @@
+≪ テーブル結合（外部結合）≫
+外部結合
+家庭の情報（＋ペット情報）
+（ペットを飼っていない場合、ペット情報はNULL埋め）
+
+### テーブル結合（外部結合）
+
+#OUTER JOINを用いた外部結合
+SELECT b.HOME_ID , b.HOME_NAME , a.NAME
+  FROM SAMPLE_4_1 a RIGHT OUTER JOIN SAMPLE_4_2 b ON b.PET_ID = a.ID
+ ORDER BY b.HOME_ID ;

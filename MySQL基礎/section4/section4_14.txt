@@ -1,0 +1,22 @@
+～DML（データ操作言語）～DML：Data Manipulation Language
+CRUD：ほとんどのソフトウェアが持つべき4つの機能
+DBに対して
+データの生成Create＝INSERT文（挿入）
+データの参照Read＝SELECT文（検索）
+データの更新Update＝UPDATE文（更新）
+データの削除Delete＝DELETE文（削除）
+
+
+～レコードの挿入（INSERT）～    
+挿入するテーブルのカラム情報
+INSERT INTO SAMPLE_3_1_1  (ID , NAME     , GENDER , BIRTHDAY     , WEIGHT , REGIST_TIMESTAMP      
+)
+挿入するデータ
+VALUES (1  , 'MOCO'   , 'F'    , '2014-05-04' , 3.5    , '2020-08-01 00:00:00' ) 
+
+※必ずカラムとバリューはセットで書く。以下はできない
+INSERT INTO SAMPLE_3_1_1 (ID , NAME     , GENDER , BIRTHDAY     , WEIGHT , REGIST_TIMESTAMP      )
+VALUES (1  , 'MOCO'   , 'F'    , '2014-05-04' , 3.5    , '2020-08-01 00:00:00' ) 
+VALUES (1  , 'MOCO'   , 'F'    , '2014-05-04' , 3.5    , '2020-08-01 00:00:00' ) 
+VALUES (1  , 'MOCO'   , 'F'    , '2014-05-04' , 3.5    , '2020-08-01 00:00:00' ) 
+
