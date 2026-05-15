@@ -1,5 +1,0 @@
-### フィールドの更新（UPDATE）
-UPDATE SAMPLE_3_1_1
-   SET NAME   = 'MOCOMOCO' ,
-       WEIGHT = 4.5
- WHERE ID     = 1 ;
